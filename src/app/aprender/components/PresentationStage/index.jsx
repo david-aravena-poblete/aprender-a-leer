@@ -19,7 +19,10 @@ export default function PresentationStage({
       </div>
 
       <div className={styles.continueArea}>
-        <Button onClick={onContinue}>
+        <Button
+          className={styles.continueButton}
+          onClick={onContinue}
+        >
           Continuar
         </Button>
       </div>
