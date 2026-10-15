@@ -1,7 +1,14 @@
-.scene {
+.scene,
+.placeholder {
   width: 100%;
   max-width: 360px;
+}
 
+.placeholder {
+  aspect-ratio: 3 / 4;
+}
+
+.scene {
   perspective: 1200px;
 }
 
