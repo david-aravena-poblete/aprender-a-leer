@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "@/shared/components/Container/";
 import Stack from "@/shared/components/Stack/";
 import CARDS from "@/shared/data/";
@@ -38,7 +38,11 @@ function createLearningRound() {
 
 export default function AprenderPage() {
   const [stage, setStage] = useState("presentation");
-  const [round] = useState(createLearningRound);
+  const [round, setRound] = useState(null);
+
+  useEffect(() => {
+    setRound(createLearningRound());
+  }, []);
 
   const goToSelection = () => {
     setStage("selection");
@@ -57,7 +61,7 @@ export default function AprenderPage() {
           height="100%"
           className={styles.stack}
         >
-          {stage === "presentation" && (
+          {round && stage === "presentation" && (
             <PresentationStage
               card={round.correctCard}
               delay={3000}
@@ -66,7 +70,7 @@ export default function AprenderPage() {
             />
           )}
 
-          {stage === "selection" && (
+          {round && stage === "selection" && (
             <SelectionStage
               correctCard={round.correctCard}
               options={round.options}
