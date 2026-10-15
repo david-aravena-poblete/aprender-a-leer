@@ -12,10 +12,12 @@ export default function AprenderPage() {
           align="center"
           justify="center"
         >
+
           <DelayedClickFlipCard
             delay={3000}
             duration={800}
           />
+          
         </Stack>
       </Container>
     </main>
