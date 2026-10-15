@@ -2,7 +2,7 @@ const CARDS = [
   { letter: "A", word: "Abeja", color: "yellow", image:"/A.png" },
   { letter: "B", word: "Ballena", color: "blue", image:"/B.png" },
   { letter: "C", word: "Casa", color: "pink", image:"/C.png" },
-  { letter: "D", word: "Dinosaurio", color: "purple", image:"/D.png" },
+  { letter: "D", word: "Dinosaurio", color: "green", image:"/D.png" },
   { letter: "E", word: "Elefante", color: "gray", image:"/E.png" },
   { letter: "F", word: "Flor", color: "yellow", image:"/F.png" },
   { letter: "G", word: "Gato", color: "gray", image:"/G.png" },
