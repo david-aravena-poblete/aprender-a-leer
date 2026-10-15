@@ -8,29 +8,40 @@ export default function SelectionStage({
   correctCard,
   options,
 }) {
-  const [selectedLetter, setSelectedLetter] = useState(null);
+  const [incorrectLetters, setIncorrectLetters] = useState([]);
+  const [isCorrectSelected, setIsCorrectSelected] = useState(false);
 
   const handleSelect = (card) => {
-    setSelectedLetter(card.letter);
+    const isCorrect = card.letter === correctCard.letter;
+
+    if (isCorrect) {
+      setIsCorrectSelected(true);
+      return;
+    }
+
+    setIncorrectLetters((currentLetters) =>
+      currentLetters.includes(card.letter)
+        ? currentLetters
+        : [...currentLetters, card.letter]
+    );
   };
 
   return (
     <section className={styles.stage}>
       <div className={styles.cardsArea}>
         {options.map((card) => {
-          const isSelected = selectedLetter === card.letter;
           const isCorrect = card.letter === correctCard.letter;
-          const isSelectedCorrect = isSelected && isCorrect;
-          const isSelectedIncorrect = isSelected && !isCorrect;
+          const showCorrect = isCorrect && isCorrectSelected;
+          const showIncorrect = incorrectLetters.includes(card.letter);
 
           return (
             <button
               key={card.letter}
               type="button"
               className={`${styles.cardOption} ${
-                isSelectedCorrect ? styles.correct : ""
+                showCorrect ? styles.correct : ""
               } ${
-                isSelectedIncorrect ? styles.incorrect : ""
+                showIncorrect ? styles.incorrect : ""
               }`.trim()}
               onClick={() => handleSelect(card)}
               aria-label={`Seleccionar ${card.word}`}
