@@ -1,0 +1,10 @@
+:root {
+    /* Duración */
+    --motion-duration-fast: 180ms;
+  
+    /* Curvas de movimiento */
+    --motion-easing-standard: ease;
+  
+    /* Transformaciones */
+    --motion-scale-pressed: 0.98;
+  }

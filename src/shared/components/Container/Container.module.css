@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+
+  min-width: 0;
+
+  margin-inline: auto;
+
+  box-sizing: border-box;
+}

@@ -1,0 +1,11 @@
+:root {
+    /* =========================
+       BORDES
+       ========================= */
+  
+    --border-xs: 1px;
+    --border-sm: 2px;
+    --border-md: 4px;
+    --border-lg: 6px;
+    --border-xl: 8px;
+  }

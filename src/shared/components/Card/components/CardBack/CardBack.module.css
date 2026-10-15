@@ -1,0 +1,13 @@
+.card__backLetter {
+  display: block;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  color: #2A1E35;
+  font-family: var(--font-family-print);
+  font-weight: 400;
+
+  font-size: 66.667cqw;
+  line-height: 1;
+}

@@ -1,0 +1,30 @@
+:root {
+    /* =========================
+       TIPOGRAFÍA
+       ========================= */
+  
+    /* Familias */
+    --font-family-print: "Comfortaa", sans-serif;
+    --font-family-cursive: "Borel", cursive;
+  
+    /* Tamaños */
+    --font-size-xs: 16px;
+    --font-size-sm: 24px;
+    --font-size-md: 32px;
+    --font-size-lg: 40px;
+    --font-size-xl: 48px;
+    --font-size-2xl: 64px;
+    --font-size-3xl: 96px;
+    --font-size-4xl: 128px;
+  
+    /* Pesos */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+  
+    /* Alturas de línea */
+    --line-height-tight: 1;
+    --line-height-normal: 1.2;
+    --line-height-relaxed: 1.5;
+  }

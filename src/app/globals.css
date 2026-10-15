@@ -1,0 +1,49 @@
+/* ========================================
+   TOKENS
+======================================== */
+
+@import "../tokens/colors.css";
+@import "../tokens/spacing.css";
+@import "../tokens/radio.css";
+@import "../tokens/borders.css";
+@import "../tokens/typography.css";
+@import "../tokens/motion.css";
+
+/* ========================================
+   TIPOGRAFÍAS
+======================================== */
+
+@font-face {
+  font-family: "Borel";
+  src: url("/fonts/Borel/Borel-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("/fonts/Comfortaa/static/Comfortaa-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* ========================================
+   BASE
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-family-print);
+}

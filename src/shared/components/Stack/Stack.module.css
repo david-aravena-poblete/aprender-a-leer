@@ -1,0 +1,23 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--stack-gap);
+
+  align-items: var(--stack-align);
+  justify-content: var(--stack-justify);
+
+  width: 100%;
+  height: var(--stack-height);
+
+  min-width: 0;
+  min-height: 0;
+
+  box-sizing: border-box;
+}
+
+/* Permite que Stack participe en una distribución flexible */
+.flex {
+  flex: 1 1 0;
+  min-height: 0;
+}
