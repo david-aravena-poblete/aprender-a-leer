@@ -1,7 +1,6 @@
 .scene,
 .placeholder {
-  width: 100%;
-  max-width: 360px;
+  width: min(100%, 360px, calc((100dvh - 176px) * 0.75));
 }
 
 .placeholder {
@@ -43,4 +42,11 @@
 
 .back {
   transform: rotateY(180deg);
+}
+
+@media (max-width: 600px) {
+  .scene,
+  .placeholder {
+    width: min(100%, 320px, calc((100dvh - 136px) * 0.75));
+  }
 }

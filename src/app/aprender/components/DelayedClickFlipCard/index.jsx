@@ -2,14 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Card from "@/shared/components/Card";
-import CARDS from "@/shared/data/";
 import styles from "./DelayedFlipCard.module.css";
 
 export default function DelayedClickFlipCard({
+  card,
   delay = 3000,
   duration = 800,
 }) {
-  const [item, setItem] = useState(null);
   const [rotation, setRotation] = useState(0);
   const [clickEnabled, setClickEnabled] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -18,12 +17,7 @@ export default function DelayedClickFlipCard({
   const animationTimerRef = useRef(null);
 
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * CARDS.length);
-    setItem(CARDS[randomIndex]);
-  }, []);
-
-  useEffect(() => {
-    if (!item) return;
+    if (!card) return;
 
     delayTimerRef.current = setTimeout(() => {
       setIsAnimating(true);
@@ -39,7 +33,7 @@ export default function DelayedClickFlipCard({
       clearTimeout(delayTimerRef.current);
       clearTimeout(animationTimerRef.current);
     };
-  }, [item, delay, duration]);
+  }, [card, delay, duration]);
 
   const handleClick = () => {
     if (!clickEnabled || isAnimating) return;
@@ -54,7 +48,7 @@ export default function DelayedClickFlipCard({
     }, duration);
   };
 
-  if (!item) {
+  if (!card) {
     return <div className={styles.placeholder} />;
   }
 
@@ -70,14 +64,14 @@ export default function DelayedClickFlipCard({
       >
         <div className={`${styles.face} ${styles.front}`}>
           <Card
-            {...item}
+            {...card}
             face="front"
           />
         </div>
 
         <div className={`${styles.face} ${styles.back}`}>
           <Card
-            {...item}
+            {...card}
             face="back"
           />
         </div>
