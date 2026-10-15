@@ -5,7 +5,6 @@ import styles from "./Card.module.css";
 
 export default function Card({
   letter = "A",
-  lowercase = "a",
   word = "Abeja",
   image = "/images/A.png",
   color = "yellow",
@@ -26,7 +25,6 @@ export default function Card({
         ) : (
           <CardFront
             letter={letter}
-            lowercase={lowercase}
             word={word}
             image={image}
           />

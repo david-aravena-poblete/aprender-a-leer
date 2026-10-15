@@ -10,7 +10,7 @@ export default function CardFront({
     <div className={styles.front}>
       <header className={styles.header}>
         <span className={styles.uppercase}>{letter}</span>
-        <span className={styles.lowercase}>{lowercase}</span>
+        <span className={styles.lowercase}>{letter.toLowerCase()}</span>
       </header>
 
       <div className={styles.body}>

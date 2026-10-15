@@ -1,9 +1,38 @@
-import styles from "./page.module.css";
-
 import Container from "@/shared/components/Container/";
 import Stack from "@/shared/components/Stack/";
-import Card from "@/shared/components/Card/";
+import LoopFlipCard from "./components/LoopFlipCard/";
 import Button from "@/shared/components/Button/";
+import styles from "./page.module.css";
+
+const cards = [
+  { letter: "A", word: "Abeja", color: "yellow", image:"/A.png" },
+  { letter: "B", word: "Ballena", color: "blue", image:"/B.png" },
+  { letter: "C", word: "Casa", color: "pink", image:"/C.png" },
+  { letter: "D", word: "Dinosaurio", color: "purple", image:"/D.png" },
+  { letter: "E", word: "Elefante", color: "gray", image:"/E.png" },
+  { letter: "F", word: "Flor", color: "yellow", image:"/F.png" },
+  { letter: "G", word: "Gato", color: "gray", image:"/G.png" },
+  { letter: "H", word: "Helado", color: "pink", image:"/H.png" },
+  { letter: "I", word: "Iguana", color: "green", image:"/I.png" },
+  { letter: "J", word: "Jirafa", color: "yellow", image:"/J.png" },
+  { letter: "K", word: "Koala", color: "gray", image:"/K.png" },
+  { letter: "L", word: "León", color: "orange", image:"/L.png" },
+  { letter: "M", word: "Mono", color: "brown", image:"/M.png" },
+  { letter: "N", word: "Nube", color: "blue", image:"/N.png" },
+  { letter: "Ñ", word: "Ñandu", color: "blue", image:"/Ñ.png" },
+  { letter: "O", word: "Oso", color: "brown", image:"/O.png" },
+  { letter: "P", word: "Perro", color: "yellow", image:"/P.png" },
+  { letter: "Q", word: "Queso", color: "yellow", image:"/Q.png" },
+  { letter: "R", word: "Ratón", color: "gray", image:"/R.png" },
+  { letter: "S", word: "Sandía", color: "red", image:"/S.png" },
+  { letter: "T", word: "Tortuga", color: "green", image:"/T.png" },
+  { letter: "U", word: "Uva", color: "purple", image:"/U.png" },
+  { letter: "V", word: "Vaca", color: "gray", image:"/V.png" },
+  { letter: "W", word: "Wafle", color: "brown", image:"/W.png" },
+  { letter: "X", word: "Xilófono", color: "blue", image:"/X.png" },
+  { letter: "Y", word: "Yogurth", color: "pink", image:"/Y.png" },
+  { letter: "Z", word: "Zorro", color: "orange", image:"/Z.png" },
+];
 
 export default function HomePage() {
   return (
@@ -14,12 +43,10 @@ export default function HomePage() {
             Aprender a leer
           </h1>
 
-          <Card
-            letter="A"
-            lowercase="a"
-            word="Abeja"
-            image="/A.png"
-            color="yellow"
+          <LoopFlipCard
+            items={cards}
+            interval={1000}
+            duration={1000}
           />
 
           <Button className={styles.startButton}>
