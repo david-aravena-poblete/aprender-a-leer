@@ -22,8 +22,10 @@ function getRandomCardExcept(card) {
   ];
 }
 
-function createLearningRound() {
-  const correctCard = getRandomCard();
+function createLearningRound(previousCorrectCard = null) {
+  const correctCard = previousCorrectCard
+    ? getRandomCardExcept(previousCorrectCard)
+    : getRandomCard();
   const wrongCard = getRandomCardExcept(correctCard);
   const correctFirst = Math.random() < 0.5;
 
@@ -46,6 +48,13 @@ export default function AprenderPage() {
 
   const goToSelection = () => {
     setStage("selection");
+  };
+
+  const startNewRound = () => {
+    setRound((currentRound) =>
+      createLearningRound(currentRound?.correctCard ?? null)
+    );
+    setStage("presentation");
   };
 
   return (
@@ -74,6 +83,7 @@ export default function AprenderPage() {
             <SelectionStage
               correctCard={round.correctCard}
               options={round.options}
+              onNewRound={startNewRound}
             />
           )}
         </Stack>
