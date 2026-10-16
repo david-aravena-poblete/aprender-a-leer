@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Button from "@/shared/components/Button/";
 import Card from "@/shared/components/Card/";
 import styles from "./SelectionStage.module.css";
 
 export default function SelectionStage({
   correctCard,
   options,
+  onNewRound,
 }) {
   const [incorrectLetters, setIncorrectLetters] = useState([]);
   const [isCorrectSelected, setIsCorrectSelected] = useState(false);
@@ -25,6 +27,9 @@ export default function SelectionStage({
         : [...currentLetters, card.letter]
     );
   };
+
+  const hasSelection =
+    isCorrectSelected || incorrectLetters.length > 0;
 
   return (
     <section className={styles.stage}>
@@ -52,10 +57,16 @@ export default function SelectionStage({
         })}
       </div>
 
-      <div
-        className={styles.continueArea}
-        aria-hidden="true"
-      />
+      <div className={styles.continueArea}>
+        {hasSelection && (
+          <Button
+            className={styles.continueButton}
+            onClick={onNewRound}
+          >
+            Continuar
+          </Button>
+        )}
+      </div>
     </section>
   );
 }
