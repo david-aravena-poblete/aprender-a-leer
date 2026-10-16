@@ -24,30 +24,15 @@
 
   padding: 0;
   border: 0;
-  border-radius: 14%;
+  border-radius: 13.333%;
   background: transparent;
 
   position: relative;
 
   cursor: pointer;
-  transition: transform 180ms ease;
-}
-
-.cardOption::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  box-sizing: border-box;
-  border: 0 solid transparent;
-  border-radius: 14%;
-
-  pointer-events: none;
-  z-index: 4;
-
   transition:
-    border-width 180ms ease,
-    border-color 180ms ease;
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .cardOption:focus-visible {
@@ -59,9 +44,8 @@
   transform: scale(1.06);
 }
 
-.incorrect::after {
-  border-width: clamp(8px, 1.2vw, 15px);
-  border-color: #ef4444;
+.incorrect {
+  box-shadow: 0 0 0 clamp(5px, 0.7vw, 8px) #ef4444;
 }
 
 .continueArea {
