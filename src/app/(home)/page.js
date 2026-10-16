@@ -20,7 +20,7 @@ export default function HomePage() {
             duration={1000}
           />
 
-          <Button className={styles.startButton}>
+          <Button href="/aprender" className={styles.startButton}>
             Comenzar
           </Button>
         </Stack>
