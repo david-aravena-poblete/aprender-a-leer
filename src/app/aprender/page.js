@@ -64,7 +64,7 @@ export default function AprenderPage() {
           {round && stage === "presentation" && (
             <PresentationStage
               card={round.correctCard}
-              delay={3000}
+              delay={1000}
               duration={800}
               onContinue={goToSelection}
             />

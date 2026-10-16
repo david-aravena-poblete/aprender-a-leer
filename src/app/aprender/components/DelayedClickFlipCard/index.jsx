@@ -65,14 +65,14 @@ export default function DelayedClickFlipCard({
         <div className={`${styles.face} ${styles.front}`}>
           <Card
             {...card}
-            face="front"
+            face="back"
           />
         </div>
 
         <div className={`${styles.face} ${styles.back}`}>
           <Card
             {...card}
-            face="back"
+            face="front"
           />
         </div>
       </div>
