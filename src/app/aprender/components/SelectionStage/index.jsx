@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "@/shared/components/Button/";
 import Card from "@/shared/components/Card/";
+import useSpeechSynthesis from "../../hooks/useSpeechSynthesis";
 import styles from "./SelectionStage.module.css";
 
 export default function SelectionStage({
@@ -12,12 +13,16 @@ export default function SelectionStage({
 }) {
   const [incorrectLetters, setIncorrectLetters] = useState([]);
   const [isCorrectSelected, setIsCorrectSelected] = useState(false);
+  const { speak } = useSpeechSynthesis(
+    correctCard?.letter ? `Encuentra la letra ${correctCard.letter}` : ""
+  );
 
   const handleSelect = (card) => {
     const isCorrect = card.letter === correctCard.letter;
 
     if (isCorrect) {
       setIsCorrectSelected(true);
+      speak("Muy bien");
       return;
     }
 
@@ -26,6 +31,7 @@ export default function SelectionStage({
         ? currentLetters
         : [...currentLetters, card.letter]
     );
+    speak("Te equivocaste");
   };
 
   const hasSelection =
