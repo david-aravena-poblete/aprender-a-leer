@@ -1,47 +1,48 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useSpeechSynthesis(text) {
   const [isFinished, setIsFinished] = useState(false);
+  const activeRef = useRef(null);
 
-  useEffect(() => {
-    setIsFinished(false);
-
-    if (!text) {
-      setIsFinished(true);
-      return;
-    }
+  const speak = useCallback((message) => {
+    if (activeRef.current) activeRef.current.active = false;
 
     if (typeof window === "undefined" ||
         !("speechSynthesis" in window) ||
-        !("SpeechSynthesisUtterance" in window)) {
+        !("SpeechSynthesisUtterance" in window) ||
+        !message) {
       setIsFinished(true);
       return;
     }
 
     const synthesis = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(text);
-    let active = true;
-
-    utterance.lang = "es-CL";
-    utterance.onend = () => {
-      if (active) setIsFinished(true);
-    };
-    utterance.onerror = () => {
-      if (active) setIsFinished(true);
-    };
-
     synthesis.cancel();
+
+    const session = { active: true };
+    activeRef.current = session;
+    setIsFinished(false);
+
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.lang = "es-CL";
+    utterance.onend = utterance.onerror = () => {
+      if (session.active) setIsFinished(true);
+    };
     synthesis.speak(utterance);
+  }, []);
+
+  useEffect(() => {
+    if (text) speak(text);
+    else setIsFinished(true);
 
     return () => {
-      active = false;
-      utterance.onend = null;
-      utterance.onerror = null;
-      synthesis.cancel();
+      if (activeRef.current) activeRef.current.active = false;
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
     };
-  }, [text]);
+  }, [text, speak]);
 
-  return { isFinished };
+  return { isFinished, speak };
 }
