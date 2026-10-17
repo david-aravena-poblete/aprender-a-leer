@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/shared/components/Button/";
 import Card from "@/shared/components/Card/";
 import useSpeechSynthesis from "../../hooks/useSpeechSynthesis";
@@ -13,6 +13,12 @@ export default function SelectionStage({
 }) {
   const [incorrectLetters, setIncorrectLetters] = useState([]);
   const [isCorrectSelected, setIsCorrectSelected] = useState(false);
+  const [showCardFront, setShowCardFront] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowCardFront(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
   const { speak } = useSpeechSynthesis(
     correctCard?.letter ? `Encuentra la letra ${correctCard.letter}` : ""
   );
@@ -57,7 +63,17 @@ export default function SelectionStage({
               onClick={() => handleSelect(card)}
               aria-label={`Seleccionar ${card.word}`}
             >
-              <Card {...card} />
+              <span
+                className={styles.rotator}
+                style={{ transform: `rotateY(${showCardFront ? 180 : 0}deg)` }}
+              >
+                <span className={styles.face}>
+                  <Card {...card} face="back" />
+                </span>
+                <span className={`${styles.face} ${styles.backFace}`}>
+                  <Card {...card} face="front" />
+                </span>
+              </span>
             </button>
           );
         })}
