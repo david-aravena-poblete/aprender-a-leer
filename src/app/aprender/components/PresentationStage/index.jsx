@@ -21,9 +21,9 @@ export default function PresentationStage({
     if (isFinished) setInitialSpeechFinished(true);
   }, [isFinished]);
 
-  const handleFlipComplete = (visibleFace) => {
+  const handleCardClick = (clickedFace) => {
     if (!initialSpeechFinished || !card) return;
-    speak(visibleFace === "back" ? card.word : card.letter);
+    speak(clickedFace === "back" ? card.letter : card.word);
   };
 
   return (
@@ -34,7 +34,7 @@ export default function PresentationStage({
           delay={delay}
           duration={duration}
           canInteract={initialSpeechFinished}
-          onFlipComplete={handleFlipComplete}
+          onCardClick={handleCardClick}
         />
       </div>
 
