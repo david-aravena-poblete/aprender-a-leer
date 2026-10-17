@@ -9,7 +9,7 @@ export default function DelayedClickFlipCard({
   delay = 3000,
   duration = 800,
   canInteract = true,
-  onFlipComplete,
+  onCardClick,
 }) {
   const [rotation, setRotation] = useState(0);
   const [clickEnabled, setClickEnabled] = useState(false);
@@ -40,6 +40,7 @@ export default function DelayedClickFlipCard({
   const handleClick = () => {
     if (!canInteract || !clickEnabled || isAnimating) return;
 
+    onCardClick?.(rotation % 360 === 0 ? "back" : "front");
     setIsAnimating(true);
     const nextRotation = rotation + 180;
     setRotation(nextRotation);
@@ -48,7 +49,6 @@ export default function DelayedClickFlipCard({
 
     animationTimerRef.current = setTimeout(() => {
       setIsAnimating(false);
-      onFlipComplete?.(nextRotation % 360 === 0 ? "back" : "front");
     }, duration);
   };
 
