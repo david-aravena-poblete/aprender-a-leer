@@ -23,7 +23,7 @@ export default function PresentationStage({
 
   const handleFlipComplete = (visibleFace) => {
     if (!initialSpeechFinished || !card) return;
-    speak(visibleFace === "back" ? card.letter : card.word);
+    speak(visibleFace === "back" ? card.word : card.letter);
   };
 
   return (
