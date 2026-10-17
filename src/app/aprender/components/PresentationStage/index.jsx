@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Button from "@/shared/components/Button/";
 import DelayedClickFlipCard from "../DelayedClickFlipCard/";
 import useSpeechSynthesis from "../../hooks/useSpeechSynthesis";
@@ -11,9 +12,19 @@ export default function PresentationStage({
   duration,
   onContinue,
 }) {
-  const { isFinished } = useSpeechSynthesis(
+  const [initialSpeechFinished, setInitialSpeechFinished] = useState(false);
+  const { isFinished, speak } = useSpeechSynthesis(
     card?.letter ? `Esta es la letra ${card.letter}` : ""
   );
+
+  useEffect(() => {
+    if (isFinished) setInitialSpeechFinished(true);
+  }, [isFinished]);
+
+  const handleFlipComplete = (visibleFace) => {
+    if (!initialSpeechFinished || !card) return;
+    speak(visibleFace === "back" ? card.letter : card.word);
+  };
 
   return (
     <section className={styles.stage}>
@@ -22,11 +33,13 @@ export default function PresentationStage({
           card={card}
           delay={delay}
           duration={duration}
+          canInteract={initialSpeechFinished}
+          onFlipComplete={handleFlipComplete}
         />
       </div>
 
       <div className={styles.continueArea}>
-        {isFinished && (
+        {initialSpeechFinished && (
           <Button
             className={styles.continueButton}
             onClick={onContinue}
