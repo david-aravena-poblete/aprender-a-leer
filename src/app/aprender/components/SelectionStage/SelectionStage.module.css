@@ -28,11 +28,33 @@
   background: transparent;
 
   position: relative;
+  perspective: 1200px;
 
   cursor: pointer;
   transition:
     transform 180ms ease,
     box-shadow 180ms ease;
+}
+
+.rotator {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  transform-style: preserve-3d;
+  transition: transform 800ms ease-in-out;
+}
+
+.face {
+  display: block;
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.backFace {
+  transform: rotateY(180deg);
 }
 
 .cardOption:focus-visible {
