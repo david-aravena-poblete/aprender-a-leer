@@ -101,7 +101,7 @@
 
   .cardsArea {
     flex-direction: column;
-    gap: clamp(44px, 6dvh, 60px);
+    gap: clamp(44px, 1dvh, 60px);
   }
 
   .cardOption {
