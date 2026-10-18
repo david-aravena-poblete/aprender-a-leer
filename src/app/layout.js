@@ -34,7 +34,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${comfortaa.variable} ${borel.variable} ${coiny.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div className="background">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

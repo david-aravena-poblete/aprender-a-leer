@@ -12,6 +12,7 @@ export default function HomePage() {
       <Container size="xl">
         <Stack gap="md" align="center" justify="center">
 
+        
           <TitleColors text="Aprender a leer" />
 
           <LoopFlipCard
