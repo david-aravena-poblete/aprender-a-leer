@@ -48,16 +48,13 @@ body {
   font-family: var(--font-family-print);
 }
 
-
 .background {
-  position: relative;
-  isolation: isolate;
-
   width: 100%;
+  min-height: 100vh;
   min-height: 100dvh;
 
   background-color: #FFF9F0;
-  background-image: url("/bg_aprender_a_leer.jpeg");
+  background-image: url("/bg_aprender_a_leer.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -65,7 +62,5 @@ body {
 
 @media (max-width: 600px) {
   .background {
-    background-position: center center;
+    background-image: url("/bg_aprender_a_leer_mobile.svg");
   }
-}
-
