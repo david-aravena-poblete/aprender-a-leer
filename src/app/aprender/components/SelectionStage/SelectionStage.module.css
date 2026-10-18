@@ -66,8 +66,20 @@
   transform: scale(1.06);
 }
 
-.incorrect {
-  box-shadow: 0 0 0 clamp(5px, 0.7vw, 8px) #ef4444;
+.cardOption::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: rgba(239, 68, 68, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.incorrect::after {
+  opacity: 1;
 }
 
 .continueArea {
