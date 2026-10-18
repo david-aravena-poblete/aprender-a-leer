@@ -14,6 +14,7 @@ export default function SelectionStage({
   const [incorrectLetters, setIncorrectLetters] = useState([]);
   const [isCorrectSelected, setIsCorrectSelected] = useState(false);
   const [showCardFront, setShowCardFront] = useState(false);
+  const [correctCardRotation, setCorrectCardRotation] = useState(0);
 
   const { isFinished, speak } = useSpeechSynthesis(
     correctCard?.letter ? `Encuentra la letra ${correctCard.letter}` : ""
@@ -22,6 +23,16 @@ export default function SelectionStage({
   useEffect(() => {
     if (isFinished) setShowCardFront(true);
   }, [isFinished]);
+
+  useEffect(() => {
+    if (!isCorrectSelected) return;
+
+    const interval = setInterval(() => {
+      setCorrectCardRotation((rotation) => rotation + 180);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isCorrectSelected]);
 
   const handleSelect = (card) => {
     const isCorrect = card.letter === correctCard.letter;
@@ -65,7 +76,9 @@ export default function SelectionStage({
             >
               <span
                 className={styles.rotator}
-                style={{ transform: `rotateY(${showCardFront ? 180 : 0}deg)` }}
+                style={{
+                  transform: `rotateY(${(showCardFront ? 180 : 0) + (showCorrect ? correctCardRotation : 0)}deg)`,
+                }}
               >
                 <span className={styles.face}>
                   <Card {...card} face="back" />
