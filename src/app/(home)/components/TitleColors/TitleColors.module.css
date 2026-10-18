@@ -1,0 +1,23 @@
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.3em;
+
+  width: 100%;
+  margin: 0;
+
+  font-family: var(--font-dynapuff), sans-serif;
+  font-size: clamp(4rem, 6vw, 5rem);
+  font-weight: 500;
+  line-height: 1.2;
+
+  text-align: center;
+}
+
+.word {
+  display: inline-flex;
+  white-space: nowrap;
+}
