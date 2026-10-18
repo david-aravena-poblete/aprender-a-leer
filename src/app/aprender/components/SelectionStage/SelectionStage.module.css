@@ -105,7 +105,7 @@
   }
 
   .cardOption {
-    width: min(66vw, 250px, calc((100dvh - 160px) * 0.34));
+    width: min(72vw, 270px, calc((100dvh - 100px - clamp(44px, 6dvh, 60px)) * 0.35));
   }
 
   .continueArea {
