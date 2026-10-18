@@ -15,11 +15,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: clamp(48px, 6vw, 80px);
+  gap: clamp(36px, 4vw, 56px);
 }
 
 .cardOption {
-  width: min(34vw, 320px, calc((100dvh - 176px) * 0.75));
+  width: min(36vw, 340px, calc((100dvh - 176px) * 0.75));
   min-width: 0;
 
   padding: 0;
@@ -101,11 +101,11 @@
 
   .cardsArea {
     flex-direction: column;
-    gap: clamp(44px, 6dvh, 60px);
+    gap: clamp(32px, 4dvh, 40px);
   }
 
   .cardOption {
-    width: min(72vw, 270px, calc((100dvh - 100px - clamp(44px, 6dvh, 60px)) * 0.35));
+    width: min(76vw, 290px, calc((100dvh - 100px - clamp(32px, 4dvh, 40px)) * 0.36));
   }
 
   .continueArea {
