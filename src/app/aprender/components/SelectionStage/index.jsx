@@ -28,7 +28,7 @@ export default function SelectionStage({
 
     if (isCorrect) {
       setIsCorrectSelected(true);
-      speak("Muy bien");
+      speak(`Muy bien. ${correctCard.word} se escribe con ${correctCard.letter}`);
       return;
     }
 
