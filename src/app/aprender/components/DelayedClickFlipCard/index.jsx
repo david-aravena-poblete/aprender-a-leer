@@ -9,6 +9,7 @@ export default function DelayedClickFlipCard({
   delay = 3000,
   duration = 800,
   canInteract = true,
+  startInitialFlip = null,
   onCardClick,
 }) {
   const [rotation, setRotation] = useState(0);
@@ -21,7 +22,9 @@ export default function DelayedClickFlipCard({
   useEffect(() => {
     if (!card) return;
 
-    delayTimerRef.current = setTimeout(() => {
+    if (startInitialFlip === false) return;
+
+    const beginInitialFlip = () => {
       setIsAnimating(true);
       setRotation(180);
 
@@ -29,13 +32,19 @@ export default function DelayedClickFlipCard({
         setIsAnimating(false);
         setClickEnabled(true);
       }, duration);
-    }, delay);
+    };
+
+    if (startInitialFlip === true) {
+      beginInitialFlip();
+    } else {
+      delayTimerRef.current = setTimeout(beginInitialFlip, delay);
+    }
 
     return () => {
       clearTimeout(delayTimerRef.current);
       clearTimeout(animationTimerRef.current);
     };
-  }, [card, delay, duration]);
+  }, [card, delay, duration, startInitialFlip]);
 
   const handleClick = () => {
     if (!canInteract || !clickEnabled || isAnimating) return;
