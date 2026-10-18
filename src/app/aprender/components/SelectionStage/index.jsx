@@ -15,6 +15,8 @@ export default function SelectionStage({
   const [isCorrectSelected, setIsCorrectSelected] = useState(false);
   const [showCardFront, setShowCardFront] = useState(false);
   const [correctCardRotation, setCorrectCardRotation] = useState(0);
+  const [finishedInitialFlips, setFinishedInitialFlips] = useState([]);
+  const cardsReady = finishedInitialFlips.length === options.length;
 
   const { isFinished, speak } = useSpeechSynthesis(
     correctCard?.letter ? `Encuentra la letra ${correctCard.letter}` : ""
@@ -35,6 +37,7 @@ export default function SelectionStage({
   }, [isCorrectSelected]);
 
   const handleSelect = (card) => {
+    if (!cardsReady) return;
     const isCorrect = card.letter === correctCard.letter;
 
     if (isCorrect) {
@@ -66,6 +69,7 @@ export default function SelectionStage({
             <button
               key={card.letter}
               type="button"
+              disabled={!cardsReady}
               className={`${styles.cardOption} ${
                 showCorrect ? styles.correct : ""
               } ${
@@ -76,6 +80,19 @@ export default function SelectionStage({
             >
               <span
                 className={styles.rotator}
+                onTransitionEnd={(event) => {
+                  if (
+                    !showCardFront ||
+                    event.target !== event.currentTarget ||
+                    event.propertyName !== "transform"
+                  ) return;
+
+                  setFinishedInitialFlips((finished) =>
+                    finished.includes(card.letter)
+                      ? finished
+                      : [...finished, card.letter]
+                  );
+                }}
                 style={{
                   transform: `rotateY(${(showCardFront ? 180 : 0) + (showCorrect ? correctCardRotation : 0)}deg)`,
                 }}
