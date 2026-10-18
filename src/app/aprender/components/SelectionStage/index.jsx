@@ -15,13 +15,13 @@ export default function SelectionStage({
   const [isCorrectSelected, setIsCorrectSelected] = useState(false);
   const [showCardFront, setShowCardFront] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShowCardFront(true), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-  const { speak } = useSpeechSynthesis(
+  const { isFinished, speak } = useSpeechSynthesis(
     correctCard?.letter ? `Encuentra la letra ${correctCard.letter}` : ""
   );
+
+  useEffect(() => {
+    if (isFinished) setShowCardFront(true);
+  }, [isFinished]);
 
   const handleSelect = (card) => {
     const isCorrect = card.letter === correctCard.letter;
