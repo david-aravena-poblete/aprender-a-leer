@@ -34,6 +34,7 @@ export default function PresentationStage({
           delay={delay}
           duration={duration}
           canInteract={initialSpeechFinished}
+          startInitialFlip={initialSpeechFinished}
           onCardClick={handleCardClick}
         />
       </div>
