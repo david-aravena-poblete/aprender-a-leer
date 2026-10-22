@@ -1,32 +1,25 @@
-import Container from "@/shared/components/Container/";
-import Stack from "@/shared/components/Stack/";
-import LoopFlipCard from "./components/LoopFlipCard/";
 import TitleColors from "./components/TitleColors";
 import Button from "@/shared/components/Button/";
-import styles from "./page.module.css";
+import RotatingCard from "@/ui/RotatingCard";
 import cards from "@/shared/data/";
+import styles from "./page.module.css";
 
 export default function HomePage() {
   return (
-    <main className={styles.page}>
-      <Container size="xl">
-        <Stack gap="md" align="center" justify="center">
-
-        
+    <div className={styles.page}>
+      <div className={styles.homeContent}>
+        <div className={styles.titleContainer}>
           <TitleColors text="Aprender a leer" />
-
-          <LoopFlipCard
-            items={cards}
-            interval={1000}
-            duration={1000}
-          />
-
+        </div>
+        <div className={styles.cardContainer}>
+          <RotatingCard cards={cards} />
+        </div>
+        <div className={styles.buttonContainer}>
           <Button href="/aprender" className={styles.startButton}>
             Comenzar
           </Button>
-
-        </Stack>
-      </Container>
-    </main>
+        </div>
+      </div>
+    </div>
   );
 }
